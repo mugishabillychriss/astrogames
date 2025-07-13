@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(120deg, #1e3c72, #2a5298);
+            color: #fff;
+        }
+
+        header {
+            padding: 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .game-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .game-card {
+            background: #ffffff10;
+            border: 1px solid #ffffff30;
+            padding: 20px;
+            text-align: center;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .game-card:hover {
+            background: #ffffff20;
+            transform: scale(1.03);
+        }
+
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            margin-top: 20px;
+            border-radius: 12px;
+        }
+
+        .game-display {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        🎮 Game Hub - Play Without Leaving
+    </header>
+
+    <div class="game-container">
+        <div class="game-card" onclick="loadGame('chess')">♟️ Play Chess</div>
+        <div class="game-card" onclick="loadGame('sudoku')">🧩 Play Sudoku</div>
+        <div class="game-card" onclick="loadGame('cards')">🃏 Cards Game</div>
+        <div class="game-card" onclick="loadGame('flappy')">🐦 Flappy Bird</div>
+        <div class="game-card" onclick="loadGame('tetris')">🧱 Tetris</div>
+        <div class="game-card" onclick="loadGame('pool')">🎱 8 Ball Pool</div>
+    </div>
+
+    <div class="game-display" id="gameDisplay"></div>
+
+    <script>
+        function loadGame(game) {
+            let iframeSrc = '';
+
+            switch (game) {
+                case 'chess':
+                    iframeSrc = 'https://www.chess.com/embed';
+                    break;
+                case 'sudoku':
+                    iframeSrc = 'https://www.sudokuweb.org/sudoku-embed.php';
+                    break;
+                case 'cards':
+                    iframeSrc = 'https://cardgames.io/spades/';
+                    break;
+                case 'flappy':
+                    iframeSrc = 'https://flappybird.io/';
+                    break;
+                case 'tetris':
+                    iframeSrc = 'https://freetetris.org/game.php';
+                    break;
+                case 'pool':
+                    iframeSrc = 'https://www.miniclip.com/games/8-ball-pool-multiplayer/en/embed/';
+                    break;
+                default:
+                    iframeSrc = '';
+            }
+
+            document.getElementById('gameDisplay').innerHTML = `<iframe src="${iframeSrc}" allowfullscreen></iframe>`;
+        }
+    </script>
+</body>
+</html>
